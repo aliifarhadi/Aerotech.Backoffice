@@ -21,7 +21,8 @@ export const login = createAsyncThunk(
       const data = await authService.login(payload)
       return data
     } catch (err: any) {
-      const message = err?.response?.data?.message || err.message || 'Login failed'
+      // Prefer API-provided messages, fall back to generic
+      const message = (err?.message) || err?.response?.data || 'Login failed'
       return rejectWithValue(message)
     }
   }
@@ -49,19 +50,30 @@ const slice = createSlice({
         state.error = null
       })
       .addCase(login.fulfilled, (state, action) => {
-        // adapt to API shape: prefer accessToken
-        const token = (action.payload as any).accessToken || (action.payload as any).token
+        state.loading = false
+        state.error = null
+
+        const payloadAny = action.payload as any
+
+        // Try common token locations returned by various APIs
+        const token =
+          payloadAny?.accessToken ||
+          payloadAny?.token ||
+          payloadAny?.access_token ||
+          payloadAny?.data?.accessToken ||
+          payloadAny?.result?.accessToken ||
+          null
+
         if (token) {
           state.token = token
           localStorage.setItem('aero_token', token)
           setAuthToken(token)
         }
-        state.loading = false
-        state.error = null
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false
-        state.error = action.payload as string
+        // action.payload may be string or object
+        state.error = typeof action.payload === 'string' ? action.payload : JSON.stringify(action.payload)
       })
   },
 })

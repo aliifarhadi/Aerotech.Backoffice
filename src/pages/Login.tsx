@@ -37,25 +37,27 @@ export default function LoginPage() {
       }}
     >
       <Paper sx={{ width: 420, p: 4 }} elevation={8}>
-        <Stack spacing={2}>
+        <Stack spacing={2} alignItems="center">
+          <Box component="img" src="https://cdn.alibaba.ir/dotair/logo/logo.png" alt="Aerotech" sx={{ width: 140, height: 'auto' }} />
           <Typography variant="h5">Aerotech Backoffice</Typography>
           <Typography color="text.secondary" variant="body2">
             Sign in to your administrator account
           </Typography>
 
-          <form onSubmit={(e) => e.preventDefault()}>
-            <Stack spacing={2}>
+          <form onSubmit={(e) => e.preventDefault()} style={{ width: '100%' }}>
+            <Stack spacing={2} sx={{ mt: 1 }}>
               <Controller
                 name="username"
                 control={control}
                 rules={{ required: 'Username is required' }}
                 render={({ field, fieldState }) => (
                   <TextField
-                    label="Username"
+                    label="Username or email"
                     fullWidth
                     {...field}
                     error={!!fieldState.error}
                     helperText={fieldState.error?.message}
+                    autoComplete="username"
                   />
                 )}
               />
@@ -72,6 +74,7 @@ export default function LoginPage() {
                     {...field}
                     error={!!fieldState.error}
                     helperText={fieldState.error?.message}
+                    autoComplete="current-password"
                   />
                 )}
               />
@@ -81,12 +84,13 @@ export default function LoginPage() {
                 size="large"
                 onClick={handleSubmit(onSubmit)}
                 disabled={auth.loading}
+                sx={{ py: 1.5 }}
               >
-                {auth.loading ? <CircularProgress size={20} /> : 'Sign in'}
+                {auth.loading ? <CircularProgress size={20} color="inherit" /> : 'Sign in'}
               </Button>
 
               {auth.error && (
-                <Typography color="error" variant="body2">
+                <Typography color="error" variant="body2" align="center">
                   {auth.error}
                 </Typography>
               )}

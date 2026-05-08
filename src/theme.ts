@@ -4,10 +4,13 @@ export const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#0b57d0',
+      main: '#F7941D',
     },
     background: {
       default: '#f4f6f8',
     },
+  },
+  typography: {
+    fontFamily: "Inter, Roboto, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial",
   },
 })
