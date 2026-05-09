@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from './pages/Login'
 import Dashboard from './pages/Dashboard'
-import { useAppSelector } from './store/hooks'
+import { useAppSelector } from './store'
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   const token = useAppSelector((s) => s.auth.token)
