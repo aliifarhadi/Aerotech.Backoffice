@@ -8,6 +8,11 @@ export const apiClient = axios.create({
   timeout: 10000,
 })
 
+const savedToken = typeof window !== 'undefined' ? localStorage.getItem('aero_token') : null
+if (savedToken) {
+  apiClient.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`
+}
+
 // attach token helper
 export function setAuthToken(token: string | null) {
   if (token) {

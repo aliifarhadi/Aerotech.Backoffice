@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from '../features/auth/authSlice'
+import flightSchedulesReducer from '../features/flightSchedules/flightSchedulesSlice'
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    flightSchedules: flightSchedulesReducer,
   },
 })
 

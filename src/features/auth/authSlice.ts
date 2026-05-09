@@ -42,6 +42,13 @@ const slice = createSlice({
       localStorage.setItem('aero_token', action.payload)
       setAuthToken(action.payload)
     },
+    initializeAuth(state) {
+      const token = localStorage.getItem('aero_token')
+      if (token) {
+        state.token = token
+        setAuthToken(token)
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -78,5 +85,5 @@ const slice = createSlice({
   },
 })
 
-export const { logout, setToken } = slice.actions
+export const { logout, setToken, initializeAuth } = slice.actions
 export default slice.reducer

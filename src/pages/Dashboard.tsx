@@ -1,9 +1,17 @@
 import React from 'react'
 import { Box, Typography, AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useNavigate } from 'react-router-dom'
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(false)
+  const navigate = useNavigate()
+
+  const handleMenuClick = (path: string) => {
+    navigate(path)
+    setOpen(false)
+  }
+
   return (
     <Box sx={{ display: 'flex', height: '100vh' }}>
       <AppBar position="fixed">
@@ -17,13 +25,13 @@ export default function Dashboard() {
 
       <Drawer open={open} onClose={() => setOpen(false)} variant="temporary">
         <List sx={{ width: 260 }}>
-          <ListItem button>
+          <ListItem onClick={() => handleMenuClick('/flight-schedules')} sx={{ cursor: 'pointer' }}>
             <ListItemText primary="Flights" />
           </ListItem>
-          <ListItem button>
+          <ListItem sx={{ cursor: 'pointer' }}>
             <ListItemText primary="Bookings" />
           </ListItem>
-          <ListItem button>
+          <ListItem sx={{ cursor: 'pointer' }}>
             <ListItemText primary="Passengers" />
           </ListItem>
         </List>

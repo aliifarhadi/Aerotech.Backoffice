@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/theme.ts","./src/api/axios.ts","./src/features/auth/authslice.ts","./src/features/flightschedules/flightschedulesslice.ts","./src/pages/dashboard.tsx","./src/pages/flightschedules.tsx","./src/pages/login.tsx","./src/services/authservice.ts","./src/services/flightservice.ts","./src/store/index.ts"],"errors":true,"version":"5.9.3"}
