@@ -14,6 +14,7 @@ This repository contains the frontend admin panel (React + TypeScript + MUI X) f
 2. Run dev server: `pnpm dev`
 
 ## Notes
-- The login service posts to your provided endpoint: `https://irongate.dotair.stg.agidp.ir/bff/backoffice/identity-service/v1/Users/LoginByPassword`.
+- The backend base URL is now configurable via `VITE_API_BASE_URL` in `.env` or `.env.local`.
+- API endpoints are centralized in `src/config.ts` and consumed by the Axios client.
 - Tokens are stored in localStorage under `aero_token` and attached to `apiClient` as a Bearer header.
 - The auth slice assumes the API returns `accessToken` or `token` in the response — adjust `authSlice` if the real response differs.

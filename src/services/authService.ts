@@ -1,4 +1,5 @@
 import apiClient from '../api/axios'
+import { API_ENDPOINTS } from '../config'
 
 export type LoginRequest = {
   username: string
@@ -7,7 +8,7 @@ export type LoginRequest = {
 
 export type LoginResponse = any
 
-const LOGIN_URL = 'https://irongate.dotair.stg.agidp.ir/bff/backoffice/identity-service/v1/Users/LoginByPassword'
+const LOGIN_URL = API_ENDPOINTS.login
 
 export const authService = {
   login: async (payload: LoginRequest) => {

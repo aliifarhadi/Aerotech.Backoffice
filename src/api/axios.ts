@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { API_BASE_URL } from '../config'
 
 export const apiClient = axios.create({
-  // base URL left empty because different services may be used; callers can use full URLs
+  baseURL: API_BASE_URL || undefined,
   headers: {
     'Content-Type': 'application/json',
   },

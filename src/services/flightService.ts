@@ -1,4 +1,5 @@
 import apiClient from '../api/axios'
+import { API_ENDPOINTS } from '../config'
 
 export type FlightSchedule = {
   id?: string
@@ -20,7 +21,7 @@ export type PaginatedFlightSchedules = {
   totalPages: number
 }
 
-const FLIGHT_SCHEDULES_URL = 'https://irongate.dotair.stg.agidp.ir/bff/backoffice/flightflow-service/v1/Flights/Schedules/Paginated'
+const FLIGHT_SCHEDULES_URL = API_ENDPOINTS.flightSchedules
 
 const isArrayOfObjects = (value: any): value is any[] =>
   Array.isArray(value) && value.length > 0 && value.every((item) => item && typeof item === 'object' && !Array.isArray(item))
